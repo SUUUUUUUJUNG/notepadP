@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Notepad</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+</head>
+<body>
+    <h1>Notepad</h1>
+    <textarea id="note" rows="10" cols="30"></textarea>
+    <br>
+    <button onclick="saveNote()">메모 저장</button>
+    <button onclick="loadNote()">메모 보기</button>
+
+    <script>
+        function saveNote(){
+            const note=document.getElementById("note").value;
+            localStorage.setItem('saveNote',note);
+            alert('메모가 저장되었습니다.');
+        }
+
+        function loadNote(){
+            const saveNote=localStorage.getItem('saveNote');
+            if(saveNote){
+                document.getElementById('note').value=saveNote;
+            }else{
+                alert('저장된 메모가 없습니다.');
+            }
+        }
+    </script>
+</body>
+</html>
