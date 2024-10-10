@@ -25,6 +25,7 @@
 
     <script>
         function saveNote() {
+
             const title = document.getElementById('title').value;
             const note = document.getElementById('note').value;
 
@@ -34,7 +35,7 @@
             }
 
             localStorage.setItem(title, note);
-            alert('Note saved!');
+            alert('메모가 저장되었습니다!');
             loadAllNotes();  // 저장 후 목록을 다시 불러오기
         }
 
@@ -48,9 +49,15 @@
                 const note = localStorage.getItem(title);
 
                 const listItem = document.createElement('li');
-                listItem.textContent = `${title}: ${note}`;
+                listItem.innerHTML = `${title}: ${note} <button onclick="deleteNote('${title}')">Delete</button>`;
                 notesList.appendChild(listItem);
             }
+        }
+
+        function deleteNote(title){
+            localStorage.removeItem(title);
+            alert(`메모 "${title}" 가 삭제되었습니다!`);
+            loadAllNotes();
         }
 
         // 페이지 로드 시 저장된 메모 불러오기
