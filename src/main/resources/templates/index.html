@@ -6,62 +6,68 @@
     <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 <body>
+<div class="container">
     <h1>메모장</h1>
 
     <!-- 제목 입력 필드 추가 -->
-    <label for="title">제목 : </label>
-    <input type="text" id="title">
-    <br>
+    <div class="form-container">
+        <label for="title">제목 : </label>
+        <input type="text" id="title">
+        <br>
 
-    <!-- 메모 입력 필드 -->
-    <textarea id="note" rows="10" cols="30"></textarea>
-    <br>
-    <button onclick="saveNote()">메모 저장</button>
-    <button onclick="loadNote()">메모 보기</button>
+        <!-- 메모 입력 필드 -->
+        <textarea id="note" rows="10" cols="30"></textarea>
+    </div>
+
+    <!-- 버튼 -->
+    <div class="button-container">
+        <button onclick="saveNote()">메모 저장</button>
+        <button onclick="loadNote()">메모 보기</button>
+    </div>
 
     <!-- 저장된 메모 목록 -->
     <h2>저장된 메모</h2>
-    <ul id="notesList"></ul>
+    <div class="notes-container">
+        <ul id="notesList"></ul>
+    </div>
+</div>
 
-    <script>
-        function saveNote() {
+<script>
+    function saveNote() {
+        const title = document.getElementById('title').value;
+        const note = document.getElementById('note').value;
 
-            const title = document.getElementById('title').value;
-            const note = document.getElementById('note').value;
-
-            if (!title) {
-                alert('Please enter a title for your note.');
-                return;
-            }
-
-            localStorage.setItem(title, note);
-            alert('메모가 저장되었습니다!');
-            loadAllNotes();  // 저장 후 목록을 다시 불러오기
+        if (!title) {
+            alert('Please enter a title for your note.');
+            return;
         }
 
-        function loadAllNotes() {
-            const notesList = document.getElementById('notesList');
-            notesList.innerHTML = '';  // 기존 목록 지우기
+        localStorage.setItem(title, note);
+        alert('메모가 저장되었습니다!');
+        loadAllNotes();
+    }
 
-            // 모든 localStorage 항목을 순회하며 목록에 추가
-            for (let i = 0; i < localStorage.length; i++) {
-                const title = localStorage.key(i);
-                const note = localStorage.getItem(title);
+    function loadAllNotes() {
+        const notesList = document.getElementById('notesList');
+        notesList.innerHTML = '';
 
-                const listItem = document.createElement('li');
-                listItem.innerHTML = `${title}: ${note} <button onclick="deleteNote('${title}')">Delete</button>`;
-                notesList.appendChild(listItem);
-            }
+        for (let i = 0; i < localStorage.length; i++) {
+            const title = localStorage.key(i);
+            const note = localStorage.getItem(title);
+
+            const listItem = document.createElement('li');
+            listItem.innerHTML = `${title}: ${note} <button onclick="deleteNote('${title}')">Delete</button>`;
+            notesList.appendChild(listItem);
         }
+    }
 
-        function deleteNote(title){
-            localStorage.removeItem(title);
-            alert(`메모 "${title}" 가 삭제되었습니다!`);
-            loadAllNotes();
-        }
+    function deleteNote(title){
+        localStorage.removeItem(title);
+        alert(`메모 "${title}" 가 삭제되었습니다!`);
+        loadAllNotes();
+    }
 
-        // 페이지 로드 시 저장된 메모 불러오기
-        window.onload = loadAllNotes;
-    </script>
+    window.onload = loadAllNotes;
+</script>
 </body>
 </html>
