@@ -7,7 +7,7 @@ body {
     padding: 20px;
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;  /* 수직 중앙 정렬 */
     min-height: 100vh;
 }
 
@@ -17,18 +17,11 @@ body {
     margin: 0 auto;
     padding: 20px;
     display: flex;
-    flex-direction: column; /* 세로 배치 */
-    align-items: flex-start;
+    flex-direction: column;
+    align-items: center;
     background-color: #fff;
     border-radius: 12px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    width: 100%; /* 전체 너비로 확장 */
-}
-
-/* 제목과 입력 필드가 세로로 나란히 배치되도록 설정 */
-.form-container {
-    display: flex;
-    flex-direction: column;
     width: 100%;
 }
 
@@ -50,6 +43,8 @@ label {
     margin-bottom: 5px;
     display: block;
     color: #2c3e50;
+    text-align: left;
+    width: 100%;
 }
 
 /* 입력 필드와 텍스트 영역 스타일 */
@@ -57,7 +52,7 @@ input[type="text"],
 textarea {
     width: 100%;
     padding: 15px;
-    margin-bottom: 20px; /* 입력 필드와 버튼 사이의 간격 조정 */
+    margin-bottom: 20px;
     border: 2px solid #e0e0e0;
     border-radius: 8px;
     font-size: 1.2rem;
@@ -75,13 +70,13 @@ textarea:focus {
     outline: none;
 }
 
-/* 버튼 컨테이너를 내용 칸 아래에 배치 */
+/* 버튼 컨테이너 */
 .button-container {
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     gap: 10px;
     width: 100%;
-    margin-bottom: 20px; /* 메모 리스트와 버튼 사이 간격 조정 */
+    margin-bottom: 20px;
 }
 
 /* 버튼 스타일 */
@@ -116,10 +111,10 @@ ul#notesList {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
-    justify-content: flex-start;
+    justify-content: center; /* 중앙 정렬 */
 }
 
-/* 저장된 메모 아이템 (정사각형으로 변경) */
+/* 저장된 메모 아이템 */
 ul#notesList li {
     background-color: #fff;
     padding: 10px;
@@ -145,7 +140,7 @@ ul#notesList li:hover {
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
 }
 
-/* Delete 버튼 조정 */
+/* Delete 버튼 */
 ul#notesList li button {
     background-color: #e74c3c;
     border-radius: 12px;
@@ -155,14 +150,13 @@ ul#notesList li button {
     cursor: pointer;
     border: none;
     transition: background-color 0.3s ease;
-    width: auto;
 }
 
 ul#notesList li button:hover {
     background-color: #c0392b;
 }
 
-/* 모바일 대응 스타일 */
+/* 모바일 대응 */
 @media (max-width: 768px) {
     ul#notesList li {
         width: calc(50% - 20px);
