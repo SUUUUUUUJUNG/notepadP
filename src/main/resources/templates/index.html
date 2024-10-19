@@ -9,7 +9,7 @@
 <div class="container">
     <h1>메모장</h1>
 
-    <!-- 제목 입력 필드 추가 -->
+    <!-- 제목 입력 필드 -->
     <div class="form-container">
         <label for="title">제목 : </label>
         <input type="text" id="title">
@@ -38,7 +38,7 @@
         const note = document.getElementById('note').value;
 
         if (!title) {
-            alert('Please enter a title for your note.');
+            alert('제목을 입력해주세요.');
             return;
         }
 
@@ -56,14 +56,23 @@
             const note = localStorage.getItem(title);
 
             const listItem = document.createElement('li');
-            listItem.innerHTML = `${title}: ${note} <button onclick="deleteNote('${title}')">Delete</button>`;
+
+            const noteContent = document.createElement('div');
+            noteContent.innerHTML = `<strong>${title}</strong><br>${note}`;
+            listItem.appendChild(noteContent);
+
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = '삭제';
+            deleteButton.onclick = function() { deleteNote(title); };
+            listItem.appendChild(deleteButton);
+
             notesList.appendChild(listItem);
         }
     }
 
     function deleteNote(title){
         localStorage.removeItem(title);
-        alert(`메모 "${title}" 가 삭제되었습니다!`);
+        alert(`메모 "${title}"가 삭제되었습니다!`);
         loadAllNotes();
     }
 
