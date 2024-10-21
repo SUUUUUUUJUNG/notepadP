@@ -50,7 +50,8 @@ label {
 /* 입력 필드와 텍스트 영역 스타일 */
 input[type="text"],
 textarea {
-    width: 100%;
+    width: 80%; /* 가로 넓이를 80%로 설정 */
+    max-width: 800px; /* 최대 넓이 설정 */
     padding: 15px;
     margin-bottom: 20px;
     border: 2px solid #e0e0e0;
@@ -119,7 +120,7 @@ ul#notesList li {
     background-color: #fff;
     padding: 10px;
     width: 150px;
-    height: 150px;
+    height: auto; /* 자동 높이로 설정 */
     border: 2px solid #e0e0e0;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -128,6 +129,7 @@ ul#notesList li {
     text-align: center;
     font-family: 'Poppins', sans-serif;
     display: flex;
+    flex-direction: column; /* 내용과 버튼을 세로로 배치 */
     justify-content: center;
     align-items: center;
     line-height: 1.4;
@@ -146,7 +148,7 @@ ul#notesList li button {
     border-radius: 12px;
     padding: 5px 10px;
     font-size: 0.8rem;
-    margin-top: 10px;
+    margin-top: 10px; /* 위쪽 마진 추가 */
     cursor: pointer;
     border: none;
     transition: background-color 0.3s ease;
